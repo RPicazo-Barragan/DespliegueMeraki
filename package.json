@@ -1,0 +1,28 @@
+{
+  "name": "apimeraki",
+  "version": "1.0.0",
+  "description": "API from meraki",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --max-old-space-size=64 index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dered-dev/merakiapp.git"
+  },
+  "author": "dered170",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dered-dev/merakiapp/issues"
+  },
+  "homepage": "https://github.com/dered-dev/merakiapp#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.28",
+    "nodemon": "^2.0.4"
+  }
+}
