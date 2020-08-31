@@ -7,9 +7,8 @@ const photograperSchema = new mongoose.Schema({
     required: true,
     min: 5,
   },
-  lastName: {
-    type: String,
-    min: 3,
+  category: {
+    type: Array,
     required: true,
   },
   email: {
@@ -23,37 +22,36 @@ const photograperSchema = new mongoose.Schema({
     min: 1,
   },
 
-  handynumber: {
-    type: Number,
-    min: 10,
+  imageProfile: {
+    type: String,
   },
 
-  adress: {
+  portfolio: {
     type: String,
-    min: 5,
-    required: true,
-  },
-
-  city: {
-    type: String,
-    min: 5,
     required: true,
   },
 
-  speciality: {
+  website: {
     type: String,
-    min: 5,
+  },
+  facebook: {
+    type: String,
     required: true,
   },
-
-  photourl: {
+  instagram: {
     type: String,
     required: true,
+  },
+  linkedin: {
+    type: String,
   },
 
   description: {
     type: String,
     required: true,
+  },
+  imagesUrl: {
+    type: Array,
   },
 });
 
