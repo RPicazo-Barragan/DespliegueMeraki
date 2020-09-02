@@ -15,7 +15,9 @@ function create(photograperData) {
 }
 
 function update(photograperId, photograperData) {
-  return photograpers.findByIdAndUpdate(photograperId, photograperData);
+  return photograpers.findByIdAndUpdate(photograperId, photograperData, {
+    new: true,
+  });
 }
 
 function deletee(photograperId) {

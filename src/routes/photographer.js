@@ -3,8 +3,49 @@ const router = express.Router();
 
 const photographers = require("../usecases/photograper");
 const auth = require("../middlewares/auth");
+const upload = require("../lib/S3Upload");
+const { request, response } = require("express");
+const singleUpload = upload.array("photos", 7);
 
-router.get("/", auth, async (request, response) => {
+router.post("/:id/upload", (req, res) => {
+  singleUpload(req, res, async (err) => {
+    if (err) {
+      return res.status(400).json({
+        success: false,
+        message: err.message,
+      });
+    }
+
+    try {
+      const id = req.params.id;
+      const imageProfile = req.files[0].location; //Imagen de perfil
+      //ARRAY para galeria
+      const imagesUrl = [
+        req.files[1].location,
+        req.files[2].location,
+        req.files[3].location,
+        req.files[4].location,
+        req.files[5].location,
+        req.files[6].location,
+      ];
+      const photographerUpdated = await photographers.update(id, {
+        imageProfile,
+        imagesUrl,
+      });
+      res.json({
+        success: true,
+        data: { photographerUpdated },
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  });
+});
+
+router.get("/", async (request, response) => {
   try {
     const allPhotograpers = await photographers.getAll();
     response.json({
