@@ -29,7 +29,7 @@ const clientSchema = new mongoose.Schema({
   },
   adress: {
     type: String,
-    required: true,
+    required: false,
   },
   register: {
     type: Date,
@@ -37,7 +37,7 @@ const clientSchema = new mongoose.Schema({
   },
   profilepicture: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

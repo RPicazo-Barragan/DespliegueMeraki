@@ -20,14 +20,20 @@ router.patch("/:id/upload", (req, res) => {
       const id = req.params.id;
       const imageProfile = req.files[0].location; //Imagen de perfil
       //ARRAY para galeria
-      const imagesUrl = [
-        req.files[1].location,
-        req.files[2].location,
-        req.files[3].location,
-        req.files[4].location,
-        req.files[5].location,
-        req.files[6].location,
-      ];
+      const imagesUrl = []
+      for (let i = 1; i < req.files.length; i++) {
+        imagesUrl.push(req.files[i].location)
+
+      }
+      console.log(imagesUrl)
+      /*       const imagesUrl = [
+              req.files[1].location,
+              req.files[2].location,
+              req.files[3].location,
+              req.files[4].location,
+              req.files[5].location,
+              req.files[6].location,
+            ]; */
       const photographerUpdated = await photographers.update(id, {
         imageProfile,
         imagesUrl,
