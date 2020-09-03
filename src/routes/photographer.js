@@ -7,7 +7,7 @@ const upload = require("../lib/S3Upload");
 const { request, response } = require("express");
 const singleUpload = upload.array("photos", 7);
 
-router.post("/:id/upload", (req, res) => {
+router.patch("/:id/upload", (req, res) => {
   singleUpload(req, res, async (err) => {
     if (err) {
       return res.status(400).json({
@@ -15,8 +15,8 @@ router.post("/:id/upload", (req, res) => {
         message: err.message,
       });
     }
-
     try {
+      // console.log(req.files);
       const id = req.params.id;
       const imageProfile = req.files[0].location; //Imagen de perfil
       //ARRAY para galeria
@@ -63,7 +63,7 @@ router.get("/", async (request, response) => {
   }
 });
 
-router.get("/:id", auth, async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
     const photographerId = request.params.id;
     const photographer = await photographers.getById(photographerId);

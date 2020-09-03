@@ -1,6 +1,7 @@
 const Clients = require("../models/client");
 const bcrypt = require("../lib/bcrypt");
 const jwt = require("../lib/jwt");
+const sendEmail = require('../lib/SendGrid')
 
 function getAll() {
   return Clients.find();
@@ -20,6 +21,11 @@ function update(clientId, clientData) {
 
 function deletee(clientId) {
   return Clients.findByIdAndDelete(clientId);
+}
+
+async function sendEmailtoPhoto(to) {
+  const emailsend = await sendEmail(to)
+  return emailsend
 }
 
 async function signup(clientData) {
@@ -59,4 +65,5 @@ module.exports = {
   deletee,
   signup,
   login,
+  sendEmailtoPhoto
 };

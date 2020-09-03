@@ -3,6 +3,27 @@ const router = express.Router();
 
 const clients = require("../usecases/clients");
 const auth = require("../middlewares/auth");
+const { request, response } = require("express");
+const sendEmail = require("../lib/SendGrid");
+
+router.post("/contact", async (request, response) => {
+  try {
+    const response1 = await clients.sendEmailtoPhoto(request.body.to)
+    response.json({
+      success: true,
+      data: {
+        response1
+      }
+    })
+  } catch (error) {
+    response.status(400).json({
+
+      success: false,
+      error: error.message,
+
+    })
+  }
+})
 
 router.get("/", async (request, response) => {
   try {

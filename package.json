@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/dered-dev/merakiapp#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.2.5",
     "aws-sdk": "^2.744.0",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
