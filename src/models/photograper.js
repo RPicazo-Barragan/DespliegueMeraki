@@ -7,6 +7,11 @@ const photograperSchema = new mongoose.Schema({
     required: true,
     min: 5,
   },
+  lastName: {
+    type: String,
+    required: false,
+    min: 3,
+  },
   category: {
     type: Array,
     required: true,
