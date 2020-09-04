@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const client = require("../usecases/clients");
+const sendEmail = require("../lib/SendGrid");
 
 router.post("/sign-up", async (request, response) => {
   try {
-    const signedUpClient = await client.signup(request.body); //continuar aqui
+    const signedUpClient = await client.signup(request.body);
+    const response1 = await sendEmail(request.body.email) //continuar aqui
     response.json({
       success: true,
       data: {
